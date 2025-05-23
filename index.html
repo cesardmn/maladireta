@@ -3,10 +3,11 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="shortcut icon" href="img/icon.svg" type="image/x-icon" />
+    <link rel="shortcut icon" href="img/icons/icon.svg" type="image/x-icon" />
     <title>Mala Direta</title>
-    <link rel="stylesheet" href="src/css/styles.css" />
-    <script type="module" src="/src/js/main.js"></script>
+    <link rel="stylesheet" href="src/css/global.css" />
+    <link rel="stylesheet" href="src/css/app.css" />
+    <script type="module" src="/src/js/main.js" defer></script>
   </head>
 
   <body>
@@ -17,22 +18,91 @@
         <span class="logo-em">Direta</span>
       </h1>
       <span class="img-container" aria-label="logo da autoflux">
-        <img src="img/icon.svg" alt="logo da autoflux" class="profile" />
+        <img src="img/icons/icon.svg" alt="logo da autoflux" class="profile" />
       </span>
     </header>
 
     <!-- MAIN -->
-    <main></main>
+    <main>
+      <!-- DOCX -->
+      <div class="doc-container">
+        <section class="doc-header">
+          <h3 class="doc-title">Modelo.docx</h3>
+          <img src="img/icons/docx.svg" alt="Ícone DOCX" class="doc-icon" />
+        </section>
+
+        <section class="doc-content">
+          <p class="doc-instruction">
+            Crie um arquivo <strong>.docx</strong> que contenha
+            <span class="doc-tag">{tags}</span> conforme o modelo.
+          </p>
+          <div class="doc-example border-blue">
+            <p>
+              <span class="doc-tag">{Lorem}</span> ipsum
+              <span class="doc-tag">{dolor}</span>
+            </p>
+            <p>sit amet consectetur</p>
+            <p><span class="doc-tag">{adipisicing}</span> elit.</p>
+          </div>
+        </section>
+
+        <section class="doc-actions">
+          <input
+            type="file"
+            name="docxInput"
+            id="docxInput"
+            accept=".docx"
+            hidden
+          />
+          <label for="docxInput" class="btn btn-blue"> Enviar .docx </label>
+          <a href="assets/docx_modelo.docx" class="link">
+            Baixar Arquivo Modelo
+          </a>
+        </section>
+
+        <section class="doc-log">
+          <p class="doc-error">Erro ao importar arquivo</p>
+        </section>
+      </div>
+
+      <!-- XLSX -->
+      <div class="doc-container">
+        <section class="doc-header">
+          <h3 class="doc-title">Dados.xlsx</h3>
+          <img src="img/icons/xlsx.svg" alt="Ícone DOCX" class="doc-icon" />
+        </section>
+
+        <section class="doc-content">
+          <p class="doc-instruction">
+            Crie um arquivo <strong>.xlsx</strong> e use as tags do modelo
+            <strong>.docx</strong> como cabeçalho.
+          </p>
+          <div class="doc-example border-green">
+            <img src="/img/xlsx.webp" alt="" />
+          </div>
+        </section>
+
+        <section class="doc-actions">
+          <input
+            type="file"
+            name="docxInput"
+            id="docxInput"
+            accept=".xlsx"
+            hidden
+          />
+          <label for="docxInput" class="btn btn-green">Enviar .xlsx</label>
+          <a href="assets/xlsx_modelo.xlsx" class="link">
+            Baixar Arquivo Modelo
+          </a>
+        </section>
+
+        <section class="doc-log danger">
+          <p class="" hidden>Erro ao importar arquivo</p>
+        </section>
+      </div>
+    </main>
 
     <!-- FOOTER -->
-    <footer>footer</footer>
-
-    <script>
-      ;(function Copyright() {
-        const date = new Date().getFullYear()
-        const footer = document.querySelector('footer')
-        footer.innerText = `© autoflux - ${date} - Cesar Dimi`
-      })()
-    </script>
+    <footer></footer>
   </body>
 </html>

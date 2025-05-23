@@ -1,11 +1,38 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="pt-br">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Mala Direta</title>
-</head>
-<body>
-  <h1>Mala Direta</h1>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="img/icon.svg" type="image/x-icon" />
+    <title>Mala Direta</title>
+    <link rel="stylesheet" href="src/css/styles.css" />
+    <script type="module" src="/src/js/main.js"></script>
+  </head>
+
+  <body>
+    <!-- HEADER -->
+    <header>
+      <h1>
+        <span>Mala</span>
+        <span class="logo-em">Direta</span>
+      </h1>
+      <span class="img-container" aria-label="logo da autoflux">
+        <img src="img/icon.svg" alt="logo da autoflux" class="profile" />
+      </span>
+    </header>
+
+    <!-- MAIN -->
+    <main></main>
+
+    <!-- FOOTER -->
+    <footer>footer</footer>
+
+    <script>
+      ;(function Copyright() {
+        const date = new Date().getFullYear()
+        const footer = document.querySelector('footer')
+        footer.innerText = `© autoflux - ${date} - Cesar Dimi`
+      })()
+    </script>
+  </body>
 </html>

@@ -99,9 +99,10 @@ main {
   align-items: center;
   justify-content: flex-start;
   flex-direction: column;
-  padding: 1rem;
   overflow: auto;
+  gap: 2rem;
   scrollbar-color: var(--bk-3) var(--bk-2);
+  padding: var(--md-1);
 }
 
 footer {

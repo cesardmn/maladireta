@@ -7,6 +7,7 @@ const App = (() => {
 
   // ELEMENTS
   const $docxInput = document.querySelector('#docxInput')
+  const $xlsxInput = document.querySelector('#xlsxInput')
 
   // VALIDATORS
   const isValidFile = (file, type) => {
@@ -20,6 +21,13 @@ const App = (() => {
   $docxInput.onchange = (e) => {
     const file = e.target.files[0]
     const isValid = isValidFile(file, '.docx')
+    console.log(isValid)
+    e.target.value = ''
+  }
+
+    $xlsxInput.onchange = (e) => {
+    const file = e.target.files[0]
+    const isValid = isValidFile(file, '.xlsx')
     console.log(isValid)
     e.target.value = ''
   }

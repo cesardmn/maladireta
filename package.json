@@ -1,0 +1,22 @@
+{
+  "name": "maladireta",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "format": "prettier . --write",
+    "build": "npm run format && vite build",
+    "dev": "vite",
+    "preview": "npm run build && vite preview"
+  },
+  "devDependencies": {
+    "prettier": "3.5.3",
+    "vite": "^6.3.5"
+  },
+  "dependencies": {
+    "docx-preview": "^0.3.5",
+    "docxtemplater": "^3.63.0",
+    "pizzip": "^3.2.0",
+    "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.3/xlsx-0.20.3.tgz"
+  }
+}

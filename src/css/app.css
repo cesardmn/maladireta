@@ -1,3 +1,5 @@
+@import url('./loader.css');
+
 /* DOC CONTAINER */
 .doc-container {
   background: #fff;
@@ -6,11 +8,15 @@
   height: 100%;
   padding: 1rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
-  display: grid;
+  display: none;
   grid-template-rows: 1fr 5fr 3fr 1fr;
   border-radius: 6px;
   gap: 0.5rem;
   align-items: center;
+}
+
+.active-doc {
+  display: grid;
 }
 
 /* HEADER */
@@ -71,6 +77,10 @@
   border-left: 4px solid #3ba467;
 }
 
+.border-red {
+  border-left: 4px solid #842029;
+}
+
 .doc-instruction {
   font-size: 1rem;
   color: var(--gr-2);
@@ -128,7 +138,6 @@
 /* log */
 
 .doc-log p {
-  display: none;
   height: 100%;
   width: 100%;
   justify-content: center;
@@ -136,7 +145,6 @@
   border: 1px solid transparent;
   padding: 1rem 1rem;
   border-radius: 0.25rem;
-  color: unset;
 }
 
 .danger {

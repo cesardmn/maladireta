@@ -1,22 +1,29 @@
-@import url('./loader.css');
-
 /* DOC CONTAINER */
-.doc-container {
-  background: #fff;
+.step {
+  background: white;
   aspect-ratio: 9/16;
   width: auto;
   height: 100%;
   padding: 1rem;
   box-shadow: 0 0 1rem rgba(0, 0, 0, 0.1);
   display: none;
-  grid-template-rows: 1fr 5fr 3fr 1fr;
   border-radius: 6px;
-  gap: 0.5rem;
   align-items: center;
+  justify-content: center;
 }
 
-.active-doc {
+.active-step {
+  display: flex;
+}
+
+.doc-container {
+  width: 100%;
+  height: 100%;
   display: grid;
+  grid-template-rows: 1fr 5fr 3fr 1fr;
+  gap: 0.5rem;
+  align-items: center;
+  background-color: #fff;
 }
 
 /* HEADER */
@@ -153,4 +160,25 @@
   border-color: #f5c2c7;
   font-size: 0.9rem;
   color: #842029;
+}
+
+.preview-container {
+  width: 100%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: 1fr 7fr 2fr;
+  gap: 0.5rem;
+  align-items: center;
+  background-color: #fff;
+  color: var(--gr-2);
+}
+
+.preview {
+  display: flex;
+  height: 100%;
+  width: 100%;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 1rem 2rem;
 }

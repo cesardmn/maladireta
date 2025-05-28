@@ -25,80 +25,100 @@
     <!-- MAIN -->
     <main>
       <!-- DOCX -->
-      <div class="doc-container active-doc">
-        <section class="doc-header">
-          <h3 class="doc-title">Modelo.docx</h3>
-          <img src="img/icons/docx.svg" alt="Ícone DOCX" class="doc-icon" />
-        </section>
+      <div class="step active-step">
+        <div class="doc-container">
+          <section class="doc-header">
+            <h3 class="doc-title">Modelo.docx</h3>
+            <img src="img/icons/docx.svg" alt="Ícone DOCX" class="doc-icon" />
+          </section>
 
-        <section class="doc-content">
-          <p class="doc-instruction">
-            Crie um arquivo <strong>.docx</strong> que contenha
-            <span class="doc-tag">{tags}</span> conforme o modelo.
-          </p>
-          <div class="doc-example border-blue">
-            <p>
-              <span class="doc-tag">{Lorem}</span> ipsum
-              <span class="doc-tag">{dolor}</span>
+          <section class="doc-content">
+            <p class="doc-instruction">
+              Crie um arquivo <strong>.docx</strong> que contenha
+              <span class="doc-tag">{tags}</span> conforme o modelo.
             </p>
-            <p>sit amet consectetur</p>
-            <p><span class="doc-tag">{adipisicing}</span> elit.</p>
-          </div>
-        </section>
+            <div class="doc-example border-blue">
+              <p>
+                <span class="doc-tag">{Lorem}</span> ipsum
+                <span class="doc-tag">{dolor}</span>
+              </p>
+              <p>sit amet consectetur</p>
+              <p><span class="doc-tag">{adipisicing}</span> elit.</p>
+            </div>
+          </section>
 
-        <section class="doc-actions">
-          <input
-            type="file"
-            name="docxInput"
-            id="docxInput"
-            accept=".docx"
-            hidden
-          />
-          <label for="docxInput" class="btn btn-blue"> Enviar .docx </label>
-          <a href="assets/docx_modelo.docx" class="link">
-            Baixar Arquivo Modelo
-          </a>
-        </section>
+          <section class="doc-actions">
+            <input
+              type="file"
+              name="docxInput"
+              id="docxInput"
+              accept=".docx"
+              hidden
+            />
+            <label for="docxInput" class="btn btn-blue"> Enviar .docx </label>
+            <a href="assets/docx_modelo.docx" class="link">
+              Baixar Arquivo Modelo
+            </a>
+          </section>
 
-        <section class="doc-log">
-          <p class="docx-error"></p>
-        </section>
+          <section class="doc-log">
+            <p class="docx-error"></p>
+          </section>
+        </div>
       </div>
 
       <!-- XLSX -->
-      <div class="doc-container">
-        <section class="doc-header">
-          <h3 class="doc-title">Dados.xlsx</h3>
-          <img src="img/icons/xlsx.svg" alt="Ícone XLSX" class="doc-icon" />
-        </section>
+      <div class="step">
+        <div class="doc-container">
+          <section class="doc-header">
+            <h3 class="doc-title">Dados.xlsx</h3>
+            <img src="img/icons/xlsx.svg" alt="Ícone XLSX" class="doc-icon" />
+          </section>
 
-        <section class="doc-content">
-          <p class="doc-instruction">
-            Crie um arquivo <strong>.xlsx</strong> e use as tags do modelo
-            <strong>.docx</strong> como cabeçalho.
-          </p>
-          <div class="doc-example border-green">
-            <img src="/img/xlsx.webp" alt="" />
+          <section class="doc-content">
+            <p class="doc-instruction">
+              Crie um arquivo <strong>.xlsx</strong> e use as tags do modelo
+              <strong>.docx</strong> como cabeçalho.
+            </p>
+            <div class="doc-example border-green">
+              <img src="/img/xlsx.webp" alt="" />
+            </div>
+          </section>
+
+          <section class="doc-actions">
+            <input
+              type="file"
+              name="xlsxInput"
+              id="xlsxInput"
+              accept=".xlsx"
+              hidden
+            />
+            <label for="xlsxInput" class="btn btn-green">Enviar .xlsx</label>
+            <a href="assets/xlsx_modelo.xlsx" class="link">
+              Baixar Arquivo Modelo
+            </a>
+          </section>
+
+          <section class="doc-log">
+            <p class="xslx-error"></p>
+          </section>
+        </div>
+      </div>
+
+      <!-- PREVIEW -->
+      <div class="step">
+        <div class="preview-container">
+          <section class="doc-header">
+            <h3 class="doc-title">Avaliação</h3>
+            <img src="img/icons/check.svg" alt="Ícone XLSX" class="doc-icon" />
+          </section>
+
+          <div class="preview">
+            <dialog class="dialog-content"></dialog>
+            <div class="preview-log"></div>
           </div>
-        </section>
-
-        <section class="doc-actions">
-          <input
-            type="file"
-            name="xlsxInput"
-            id="xlsxInput"
-            accept=".xlsx"
-            hidden
-          />
-          <label for="xlsxInput" class="btn btn-green">Enviar .xlsx</label>
-          <a href="assets/xlsx_modelo.xlsx" class="link">
-            Baixar Arquivo Modelo
-          </a>
-        </section>
-
-        <section class="doc-log">
-          <p class="xslx-error"></p>
-        </section>
+          <button class="btn btn-green" id="generate" >baixar</button>
+        </div>
       </div>
     </main>
 

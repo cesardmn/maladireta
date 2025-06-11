@@ -1,6 +1,8 @@
 import Navbar from './Navbar'
 import ColumnContainer from './ColumnContainer'
 import InfoPanel from './InfoPanel'
+import LogPanel from './LogPanel'
+
 function App() {
   return (
     <main className="h-[100svh] bg-bk-1 text-wt-1 font-sans flex flex-col">
@@ -18,7 +20,9 @@ function App() {
         </ColumnContainer>
 
         <ColumnContainer />
-        <ColumnContainer />
+        <ColumnContainer>
+          <LogPanel />
+        </ColumnContainer>
       </section>
     </main>
   )

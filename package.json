@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "format": "prettier . --write",
     "lint": "eslint .",
-    "build": "npm run format && npm run lint && vite build",
+    "format": "prettier . --write && npm run lint",
+    "build": "npm run format && vite build",
     "preview": "vite preview",
     "test": "vitest",
     "test:watch": "vitest --watch"

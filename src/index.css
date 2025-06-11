@@ -34,6 +34,7 @@ body,
 #root {
   height: 100%;
   overflow: hidden;
+  user-select: none;
 }
 
 .text-gradient-orange {
@@ -59,7 +60,8 @@ body,
 ::-webkit-scrollbar-thumb {
   background-color: var(--color-bk-1);
   border-radius: 8px;
-  border: 3px solid var(--color-bk-3); /* Dá espaçamento ao redor */
+  border: 3px solid var(--color-bk-3);
+  /* Dá espaçamento ao redor */
   transition: background-color 0.3s ease;
 }
 

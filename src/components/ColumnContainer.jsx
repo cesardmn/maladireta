@@ -2,9 +2,8 @@ const ColumnContainer = ({ children }) => {
   return (
     <div
       className="
-        flex bg-bk-2 rounded-xl border border-bk-3 shadow-lg 
-        w-full p-6 min-h-[75vh] justify-center
-        max-w-2xl h-[100%] lg:overflow-hidden "
+        flex bg-bk-2 rounded-xl border border-bk-3 shadow-lg py-8 px-4 max-w-2xl w-full lg:h-[80svh]
+        "
     >
       {children}
     </div>

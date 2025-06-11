@@ -1,0 +1,80 @@
+@import 'tailwindcss';
+
+@theme {
+  /* Definindo variáveis CSS para as cores do tema */
+
+  /* Whites */
+  --color-wt-1: #ffffff;
+  --color-wt-2: #f5f5f5;
+  --color-wt-3: #e0e0e0;
+
+  /* Greys */
+  --color-gr-1: #bdbdbd;
+  --color-gr-2: #757575;
+  --color-gr-3: #333333;
+
+  /* Oranges */
+  --color-or-1: #ff9800;
+  --color-or-2: #f57c00;
+  --color-or-3: #ef6c00;
+
+  /* Blacks */
+  --color-bk-1: #212121;
+  --color-bk-2: #1b1b1b;
+  --color-bk-3: #0d0d0d;
+
+  /* Scrollbar colors */
+  --scrollbar-track-bg: #121212;
+  --scrollbar-thumb-bg: #444444;
+  --scrollbar-thumb-hover-bg: #666666;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  overflow: hidden;
+}
+
+.text-gradient-orange {
+  background-image: linear-gradient(
+    to right,
+    var(--color-or-3),
+    var(--color-or-1)
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* Scrollbar Track */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+  background-color: var(--color-bk-3);
+}
+
+/* Scrollbar Thumb */
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-bk-1);
+  border-radius: 8px;
+  border: 3px solid var(--color-bk-3); /* Dá espaçamento ao redor */
+  transition: background-color 0.3s ease;
+}
+
+/* Thumb hover */
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-bk-2);
+}
+
+/* Firefox scrollbar */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-bk-1) var(--color-bk-3);
+}
+
+*::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
+}

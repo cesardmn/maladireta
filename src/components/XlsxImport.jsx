@@ -2,21 +2,40 @@ import { FaRegFileExcel } from 'react-icons/fa'
 import { useLogger } from '../providers/Logger/Hook'
 import { isValidFile } from '../utils/index'
 import { useFiles } from '../providers/Files/Hook'
+import { Xlsx } from '../utils/Xlsx'
 
 const XlsxImport = ({ setStep }) => {
   const { log } = useLogger()
-  const { files } = useFiles()
+  const { files, setFiles } = useFiles()
 
   console.log(files)
-  const handleChange = (e) => {
+  const handleChange = async (e) => {
     const file = e.target.files[0]
     const isFile = isValidFile(file, 'xlsx')
 
-    if (isFile) {
-      log('info', `Analisando ${file.name}`)
+    if (!isFile) {
+      log('error', 'Arquivo inexistente ou inválido.')
+      return
     }
 
-    setStep('xlsx')
+    const xlsx = await Xlsx.readerXLSX(file)
+    const { status, headers, message } = xlsx
+
+    if (status === 'nok') {
+      log('error', message)
+      return
+    }
+
+    log(
+      'info',
+      `Tags encontradas:
+      ${headers.join(' | ')}`
+    )
+    log('success', message)
+
+    files.xlsx = xlsx
+    setFiles(files)
+    setStep('files')
   }
 
   return (

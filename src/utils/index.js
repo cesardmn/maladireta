@@ -1,8 +1,50 @@
+import PizZip from 'pizzip'
+
 export const isValidFile = (file, type) => {
   if (!file || !file.name) return false
   const fileName = file.name.toLowerCase()
   const expectedExtension = type.toLowerCase()
   return fileName.endsWith(expectedExtension)
+}
+
+export const getBuffer = async (file, size) => {
+  try {
+    const buffer = await file.arrayBuffer()
+
+    if (buffer.byteLength === 0) {
+      return { status: 'nok', message: 'O arquivo está vazio.', buffer: null }
+    }
+
+    const sizeMB = buffer.byteLength / (1024 * 1024)
+    if (sizeMB > size) {
+      return {
+        status: 'nok',
+        message: `O arquivo é muito grande (${sizeMB.toFixed(2)}MB). Máximo permitido: ${size}MB.`,
+        buffer: null,
+      }
+    }
+
+    return { status: 'ok', buffer }
+  } catch (error) {
+    return {
+      status: 'nok',
+      message: `Erro ao ler o arquivo: ${error.message || error}`,
+      buffer: null,
+    }
+  }
+}
+
+export const getZip = (buffer) => {
+  try {
+    const zip = new PizZip(buffer)
+    return { status: 'ok', zip }
+  } catch (error) {
+    return {
+      status: 'nok',
+      message: `Erro ao processar o arquivo ZIP: ${error.message || error}`,
+      zip: null,
+    }
+  }
 }
 
 export const sanitizeString = (str) => {

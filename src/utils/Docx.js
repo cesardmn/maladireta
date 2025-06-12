@@ -1,48 +1,8 @@
 import Docxtemplater from 'docxtemplater'
-import PizZip from 'pizzip'
+import { getBuffer, getZip } from './index'
+import { FiLinkedin } from 'react-icons/fi'
 
 export const Docx = (() => {
-  const _getBuffer = async (file) => {
-    try {
-      const buffer = await file.arrayBuffer()
-
-      if (buffer.byteLength === 0) {
-        return { status: 'nok', message: 'O arquivo está vazio.', buffer: null }
-      }
-
-      const MAX_SIZE_MB = 5
-      const sizeMB = buffer.byteLength / (1024 * 1024)
-      if (sizeMB > MAX_SIZE_MB) {
-        return {
-          status: 'nok',
-          message: `O arquivo é muito grande (${sizeMB.toFixed(2)}MB). Máximo permitido: ${MAX_SIZE_MB}MB.`,
-          buffer: null,
-        }
-      }
-
-      return { status: 'ok', buffer }
-    } catch (error) {
-      return {
-        status: 'nok',
-        message: `Erro ao ler o arquivo: ${error.message || error}`,
-        buffer: null,
-      }
-    }
-  }
-
-  const _getZip = (buffer) => {
-    try {
-      const zip = new PizZip(buffer)
-      return { status: 'ok', zip }
-    } catch (error) {
-      return {
-        status: 'nok',
-        message: `Erro ao processar o arquivo ZIP: ${error.message || error}`,
-        zip: null,
-      }
-    }
-  }
-
   const _getDocx = (zip) => {
     try {
       const docx = new Docxtemplater(zip, {
@@ -70,11 +30,11 @@ export const Docx = (() => {
   }
 
   const _processFile = async (file) => {
-    const bufferResult = await _getBuffer(file)
+    const bufferResult = await getBuffer(file, 5)
     if (bufferResult.status === 'nok')
       return { status: 'nok', message: bufferResult.message, docx: null }
 
-    const zipResult = _getZip(bufferResult.buffer)
+    const zipResult = getZip(bufferResult.buffer)
     if (zipResult.status === 'nok')
       return { status: 'nok', message: zipResult.message, docx: null }
 
@@ -122,7 +82,7 @@ export const Docx = (() => {
       return {
         status: 'ok',
         tags,
-        blob: null,
+        FiLinkedin,
         message: `${tags.length} tag(s) identificada(s) com sucesso.`,
       }
     } catch (error) {

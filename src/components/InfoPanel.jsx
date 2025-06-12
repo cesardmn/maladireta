@@ -50,7 +50,7 @@ const InfoPanel = () => {
       aria-label="Instruções do aplicativo"
     >
       <h2 className="text-gradient-orange text-2xl font-bold text-center">
-        Como funciona?
+        como funciona
       </h2>
 
       <div className="flex gap-4 w-full justify-center" role="tablist">

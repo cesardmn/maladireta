@@ -24,7 +24,7 @@ const LogPanel = () => {
       aria-label="Instruções do aplicativo"
     >
       <h2 className="text-gradient-orange text-2xl font-bold text-center">
-        Logs
+        logs
       </h2>
 
       <div

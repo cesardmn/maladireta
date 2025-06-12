@@ -59,7 +59,7 @@ const DocxImport = ({ setStep }) => {
       aria-label="Instruções do aplicativo"
     >
       <h2 className="text-gradient-orange text-2xl font-bold text-center">
-        Importe o modelo docx
+        importe o modelo docx
       </h2>
 
       <div className="h-full flex flex-col items-center justify-center w-full text-center">

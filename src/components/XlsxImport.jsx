@@ -45,7 +45,7 @@ const XlsxImport = ({ setStep }) => {
       aria-label="Instruções do aplicativo"
     >
       <h2 className="text-gradient-orange text-2xl font-bold text-center">
-        Importe o modelo xlsx
+        importe o modelo xlsx
       </h2>
 
       <div className="h-full flex flex-col items-center justify-center w-full text-center">

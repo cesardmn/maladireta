@@ -6,9 +6,7 @@ import DocxImport from './DocxImport'
 import XlsxImport from './XlsxImport'
 import { useState } from 'react'
 
-
 const App = () => {
-
   const [step, setStep] = useState('docx')
 
   return (
@@ -29,7 +27,6 @@ const App = () => {
         <ColumnContainer>
           {step === 'docx' && <DocxImport setStep={setStep} />}
           {step === 'xlsx' && <XlsxImport setStep={setStep} />}
-
         </ColumnContainer>
 
         <ColumnContainer>

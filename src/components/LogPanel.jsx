@@ -42,9 +42,13 @@ const LogPanel = () => {
             .slice()
             .reverse()
             .map((log, index) => (
-              <p key={index} className={`mb-2 ${getColorClass(log.status)}`}>
-                [{log.timestamp}] {log.message}
-              </p>
+              <p
+                key={index}
+                className={`mb-2 ${getColorClass(log.status)}`}
+                dangerouslySetInnerHTML={{
+                  __html: `[${log.timestamp}] ${log.message.replace(/\n/g, '<br />')}`,
+                }}
+              ></p>
             ))
         )}
       </div>

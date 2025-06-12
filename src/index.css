@@ -28,7 +28,6 @@
   --scrollbar-thumb-bg: #444444;
   --scrollbar-thumb-hover-bg: #666666;
 
-  
   /* Office Colors */
 
   /* blue */
@@ -36,7 +35,7 @@
   --color-of-blue-2: #2b7cd3;
   --color-of-blue-3: #185abd;
   --color-of-blue-4: #134391;
-  
+
   /* green */
   --color-of-green-1: #47c481;
   --color-of-green-2: #39a063;
@@ -53,43 +52,17 @@ body,
 }
 
 .text-gradient-orange {
-  background-image: linear-gradient(to right,
-      var(--color-or-3),
-      var(--color-or-1));
+  background-image: linear-gradient(
+    to right,
+    var(--color-or-3),
+    var(--color-or-1)
+  );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   color: transparent;
 }
 
-/* Scrollbar Track */
 ::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-  background-color: var(--color-bk-3);
-}
-
-/* Scrollbar Thumb */
-::-webkit-scrollbar-thumb {
-  background-color: var(--color-bk-1);
-  border-radius: 8px;
-  border: 3px solid var(--color-bk-3);
-  /* Dá espaçamento ao redor */
-  transition: background-color 0.3s ease;
-}
-
-/* Thumb hover */
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--color-bk-2);
-}
-
-/* Firefox scrollbar */
-* {
-  scrollbar-width: thin;
-  scrollbar-color: var(--color-bk-1) var(--color-bk-3);
-}
-
-*::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
+  display: none;
 }

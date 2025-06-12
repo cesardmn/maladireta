@@ -1,21 +1,56 @@
-import { FaRegFileWord } from "react-icons/fa6";
+import { FaRegFileWord } from 'react-icons/fa6'
 import { useLogger } from '../providers/Logger/Hook'
-import { isValidFile } from '../utils/index'
+import { isValidFile, findSanitizedDifferences } from '../utils/index'
+import { Docx } from '../utils/Docx'
+import { useFiles } from '../providers/Files/Hook'
 
 const DocxImport = ({ setStep }) => {
+  const { log } = useLogger()
 
- const { log } = useLogger()
+  const { files, setFiles } = useFiles()
 
-  const handleChange = (e) => {
-    const file = e.target.files[0];
+  const handleChange = async (e) => {
+    const file = e.target.files[0]
     const isFile = isValidFile(file, 'docx')
 
-    if(isFile) {
-      log('info', `Analisando ${file.name}`)
+    if (!isFile) {
+      log('error', 'Arquivo inexistente ou inválido.')
+      return
     }
 
+    const { tags, status, message } = await Docx.getTags(file)
+    if (status === 'nok') {
+      log('error', message)
+      return
+    }
+
+    const sanitize = findSanitizedDifferences(tags)
+    if (sanitize.length > 0) {
+      const alteracoes = sanitize
+        .map((item) => `{${item.original}} → {${item.sanitized}}`)
+        .join('\n')
+
+      log(
+        'warning',
+        `Foram encontradas tags com espaços desnecessários.
+        Substituições sugeridas:
+        ${alteracoes}
+        `
+      )
+      return
+    }
+
+    const docx = {
+      file,
+      tags,
+    }
+
+    setFiles((files['docx'] = docx))
+
+    log('info', `${message}\n ${tags.join(' | ')}`)
+    log('success', `Arquivo ${file.name} processado com suceso.`)
     setStep('xlsx')
-  };
+  }
 
   return (
     <div
@@ -50,7 +85,7 @@ const DocxImport = ({ setStep }) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default DocxImport;
+export default DocxImport

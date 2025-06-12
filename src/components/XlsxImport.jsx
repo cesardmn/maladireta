@@ -1,13 +1,15 @@
-import { FaRegFileExcel } from "react-icons/fa";
+import { FaRegFileExcel } from 'react-icons/fa'
 import { useLogger } from '../providers/Logger/Hook'
 import { isValidFile } from '../utils/index'
+import { useFiles } from '../providers/Files/Hook'
 
 const XlsxImport = ({ setStep }) => {
-
   const { log } = useLogger()
+  const { files } = useFiles()
 
+  console.log(files)
   const handleChange = (e) => {
-    const file = e.target.files[0];
+    const file = e.target.files[0]
     const isFile = isValidFile(file, 'xlsx')
 
     if (isFile) {
@@ -15,7 +17,7 @@ const XlsxImport = ({ setStep }) => {
     }
 
     setStep('xlsx')
-  };
+  }
 
   return (
     <div
@@ -50,7 +52,7 @@ const XlsxImport = ({ setStep }) => {
         />
       </div>
     </div>
-  );
-};
+  )
+}
 
-export default XlsxImport;
+export default XlsxImport

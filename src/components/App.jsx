@@ -2,8 +2,15 @@ import Navbar from './Navbar'
 import ColumnContainer from './ColumnContainer'
 import InfoPanel from './InfoPanel'
 import LogPanel from './LogPanel'
+import DocxImport from './DocxImport'
+import XlsxImport from './XlsxImport'
+import { useState } from 'react'
 
-function App() {
+
+const App = () => {
+
+  const [step, setStep] = useState('docx')
+
   return (
     <main className="h-[100svh] bg-bk-1 text-wt-1 font-sans flex flex-col">
       <Navbar />
@@ -19,7 +26,12 @@ function App() {
           <InfoPanel />
         </ColumnContainer>
 
-        <ColumnContainer />
+        <ColumnContainer>
+          {step === 'docx' && <DocxImport setStep={setStep} />}
+          {step === 'xlsx' && <XlsxImport setStep={setStep} />}
+
+        </ColumnContainer>
+
         <ColumnContainer>
           <LogPanel />
         </ColumnContainer>

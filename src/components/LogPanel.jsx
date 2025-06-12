@@ -29,7 +29,7 @@ const LogPanel = () => {
 
       <div
         className=" 
-          flex flex-col overflow-y-auto lg:h-full
+          flex flex-col overflow-y-auto lg:h-full w-full
           bg-bk-3 rounded-lg p-4 text-gr-2
           "
         tabIndex={0}

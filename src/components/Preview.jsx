@@ -1,16 +1,14 @@
-'client'
-
 import { useState, useEffect, useRef } from 'react'
+import { BsFiletypeDocx } from 'react-icons/bs'
 import { useFiles } from '../providers/Files/Hook'
 import { renderAsync } from 'docx-preview'
 
-const Preview = () => {
+const Preview = ({ title }) => {
   const [isOpen, setIsOpen] = useState(false)
   const previewRef = useRef(null)
   const { files } = useFiles()
-  
+
   const docxFile = files?.preview
-  
 
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
@@ -54,29 +52,48 @@ const Preview = () => {
     <>
       <button
         onClick={openModal}
-        className="text-or-3 font-medium px-4 py-2 rounded hover:bg-gray-300"
         disabled={!docxFile}
+        className={`group flex items-center gap-2 px-4 py-2 rounded border border-or-3 transition 
+    ${docxFile ? 'hover:bg-or-3 hover:text-wt-1 cursor-pointer' : 'opacity-40 cursor-not-allowed'}
+  `}
+        aria-label="Abrir pré-visualização do documento"
       >
-        Preview
+        <BsFiletypeDocx className="text-or-2 group-hover:text-wt-1" size={18} />
+        <span className="text-sm underline group-hover:no-underline">{`${title}.docx`}</span>
       </button>
 
       {isOpen && (
-        <div className="fixed inset-0 z-50 bg-black bg-opacity-50 overflow-auto">
-          <div className="flex justify-center py-12 relative">
-            <button
-              onClick={closeModal}
-              className="absolute top-4 right-4 text-wt-3 hover:text-wt-1 text-6xl font-bold"
-              aria-label="Fechar"
-            >
-              &times;
-            </button>
+        <div className="fixed inset-0 z-50 bg-black overflow-auto">
+          <button
+            onClick={closeModal}
+            className="fixed top-0 right-4 text-wt-3 hover:text-wt-1 text-6xl cursor-pointer"
+            aria-label="Fechar"
+          >
+            &times;
+          </button>
 
+          <div className="w-full text-center flex flex-col items-center space-y-4 py-6 shadow-sm">
+            <div className="flex items-center space-x-2">
+              <h3 className="text-lg font-semibold text-gr-1">
+                Pré-visualização do Documento
+              </h3>
+            </div>
+            <p className="text-sm text-gr-2 max-w-md">
+              Esta é apenas uma prévia para fins de revisão.
+              <br />
+              Pode conter pequenas divergências visuais que não estarão
+              presentes no documento final.
+            </p>
+          </div>
+
+          <div className="flex justify-center pb-12 pt-4 relative">
             <div
               ref={previewRef}
-              className="w-[210mm] h-[297mm] bg-white rounded-lg shadow-lg overflow-auto"
+              className=" bg-white rounded-lg shadow-lg overflow-auto"
               style={{
                 overflow: 'hidden',
                 padding: 0,
+                textAlign: 'initial',
               }}
             >
               {!docxFile && (

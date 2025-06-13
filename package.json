@@ -16,6 +16,7 @@
     "@tailwindcss/vite": "^4.1.9",
     "docx-preview": "^0.3.5",
     "docxtemplater": "^3.63.2",
+    "jszip": "^3.10.1",
     "pizzip": "^3.2.0",
     "react": "^19.1.0",
     "react-dom": "^19.1.0",

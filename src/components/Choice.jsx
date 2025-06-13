@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { useFiles } from '../providers/Files/Hook'
 import Preview from './Preview'
 import { BsFileEarmarkZip } from 'react-icons/bs'
+import { Mailling } from '../utils/Mailling'
 
 const Choice = () => {
   const { files } = useFiles()
@@ -12,6 +13,22 @@ const Choice = () => {
   const handleClick = (key) => {
     setSelectedKey(key)
     setFileName(`${key}_${data[0][key]}`)
+  }
+
+  const handleDownload = async () => {
+    const zip = await Mailling(data, files.docx.file, selectedKey)
+    if (zip.status === 'ok') {
+      const url = URL.createObjectURL(zip.zip)
+      const a = document.createElement('a')
+      a.href = url
+      a.download = 'mala-direta.zip'
+      document.body.appendChild(a)
+      a.click()
+      document.body.removeChild(a)
+      URL.revokeObjectURL(url)
+    } else {
+      alert(zip.message)
+    }
   }
 
   return (
@@ -74,6 +91,7 @@ const Choice = () => {
               <button
                 className="bg-or-3 text-wt-1 font-bold px-6 py-2 rounded hover:bg-or-2 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-or-1 max-w-full sm:max-w-[280px] truncate flex items-center gap-2"
                 aria-label="Baixar mala direta em arquivo zip"
+                onClick={handleDownload}
               >
                 <BsFileEarmarkZip size={18} />
                 <span className="truncate">mala-direta.zip</span>

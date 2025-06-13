@@ -1,4 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react'
+'client'
+
+import { useState, useEffect, useRef } from 'react'
 import { useFiles } from '../providers/Files/Hook'
 import { renderAsync } from 'docx-preview'
 
@@ -6,12 +8,13 @@ const Preview = () => {
   const [isOpen, setIsOpen] = useState(false)
   const previewRef = useRef(null)
   const { files } = useFiles()
-  const docxFile = files?.file
+  
+  const docxFile = files?.preview
+  
 
   const openModal = () => setIsOpen(true)
   const closeModal = () => setIsOpen(false)
 
-  // ➕ Fechar com tecla ESC
   useEffect(() => {
     const handleKeyDown = (event) => {
       if (event.key === 'Escape') {
@@ -28,7 +31,6 @@ const Preview = () => {
     }
   }, [isOpen])
 
-  // ➕ Renderizar DOCX
   useEffect(() => {
     if (isOpen && docxFile && previewRef.current) {
       previewRef.current.innerHTML = ''

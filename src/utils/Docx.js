@@ -8,6 +8,7 @@ export const Docx = (() => {
       const docx = new Docxtemplater(zip, {
         paragraphLoop: true,
         linebreaks: true,
+        nullGetter: () => '',
       })
       return { status: 'ok', docx }
     } catch (error) {

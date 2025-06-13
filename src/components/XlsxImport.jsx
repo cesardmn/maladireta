@@ -3,12 +3,12 @@ import { useLogger } from '../providers/Logger/Hook'
 import { isValidFile } from '../utils/index'
 import { useFiles } from '../providers/Files/Hook'
 import { Xlsx } from '../utils/Xlsx'
+import { Docx } from '../utils/Docx'
 
 const XlsxImport = ({ setStep }) => {
   const { log } = useLogger()
   const { files, setFiles } = useFiles()
 
-  console.log(files)
   const handleChange = async (e) => {
     const file = e.target.files[0]
     const isFile = isValidFile(file, 'xlsx')
@@ -19,7 +19,7 @@ const XlsxImport = ({ setStep }) => {
     }
 
     const xlsx = await Xlsx.readerXLSX(file)
-    const { status, headers, message } = xlsx
+    const { status, headers, message, data } = xlsx
 
     if (status === 'nok') {
       log('error', message)
@@ -34,6 +34,15 @@ const XlsxImport = ({ setStep }) => {
     log('success', message)
 
     files.xlsx = xlsx
+
+    const preview = await Docx.replaceTags(
+      files.docx.file,
+      data[0]
+    )
+
+    files.preview = preview.blob
+    console.log(files)
+
     setFiles(files)
     setStep('files')
   }

@@ -45,7 +45,7 @@ const DocxImport = ({ setStep }) => {
       tags,
     }
 
-    setFiles((files['docx'] = docx))
+    setFiles({ ...files, docx })
 
     log('info', `${message}\n ${tags.join(' | ')}`)
     log('success', `Arquivo ${file.name} processado com suceso.`)

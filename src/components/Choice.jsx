@@ -1,6 +1,7 @@
 import { useState } from 'react'
 import { useFiles } from '../providers/Files/Hook'
 import { BsFiletypeDocx } from 'react-icons/bs'
+import Preview from './Preview'
 
 const Choice = () => {
   const { files } = useFiles()
@@ -51,9 +52,7 @@ const Choice = () => {
         <div className="flex justify-between items-center gap-4">
           {fileName && (
             <>
-              <button className=" text-or-3 font-medium px-4 py-2 rounded hover:bg-gray-300">
-                Preview
-              </button>
+              <Preview />
               <button className="bg-or-3 text-wt-1 font-bold px-4 py-2 rounded hover:bg-or-4">
                 Gerar
               </button>

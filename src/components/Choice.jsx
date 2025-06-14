@@ -9,6 +9,7 @@ const Choice = () => {
   const { data, keys } = files.xlsx
   const [fileName, setFileName] = useState()
   const [selectedKey, setSelectedKey] = useState(null)
+  const [isLoading, setIsLoading] = useState(false)
 
   const handleClick = (key) => {
     setSelectedKey(key)
@@ -16,18 +17,28 @@ const Choice = () => {
   }
 
   const handleDownload = async () => {
-    const zip = await Mailling(data, files.docx.file, selectedKey)
-    if (zip.status === 'ok') {
-      const url = URL.createObjectURL(zip.zip)
-      const a = document.createElement('a')
-      a.href = url
-      a.download = 'mala-direta.zip'
-      document.body.appendChild(a)
-      a.click()
-      document.body.removeChild(a)
-      URL.revokeObjectURL(url)
-    } else {
-      alert(zip.message)
+    setIsLoading(true)
+
+    try {
+      const zip = await Mailling(data, files.docx.file, selectedKey)
+
+      if (zip.status === 'ok') {
+        const url = URL.createObjectURL(zip.zip)
+        const a = document.createElement('a')
+        a.href = url
+        a.download = 'mala-direta.zip'
+        document.body.appendChild(a)
+        a.click()
+        document.body.removeChild(a)
+        URL.revokeObjectURL(url)
+      } else {
+        alert(zip.message)
+      }
+    } catch (error) {
+      alert('Erro ao gerar os arquivos.')
+      console.error(error)
+    } finally {
+      setIsLoading(false)
     }
   }
 
@@ -89,12 +100,15 @@ const Choice = () => {
                 Baixar arquivos gerados:
               </span>
               <button
-                className="bg-or-3 text-wt-1 font-bold px-6 py-2 rounded hover:bg-or-2 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-or-1 max-w-full sm:max-w-[280px] truncate flex items-center gap-2"
+                className="bg-or-3 text-wt-1 font-bold px-6 py-2 rounded hover:bg-or-2 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-or-1 max-w-full sm:max-w-[280px] truncate flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
                 aria-label="Baixar mala direta em arquivo zip"
                 onClick={handleDownload}
+                disabled={isLoading}
               >
                 <BsFileEarmarkZip size={18} />
-                <span className="truncate">mala-direta.zip</span>
+                <span className="truncate">
+                  {isLoading ? 'Gerando arquivos...' : 'mala-direta.zip'}
+                </span>
               </button>
             </div>
           </div>

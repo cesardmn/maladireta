@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import logo from '../assets/img/icon.svg'
+import { BsLinkedin, BsGithub } from 'react-icons/bs'
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false)
@@ -24,9 +25,6 @@ const Navbar = () => {
 
 const NavbarLogo = () => (
   <div className="flex items-center gap-3">
-    <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center text-bk-1 font-bold text-lg select-none">
-      <img src={logo} alt="Logo" className="w-full h-full object-cover" />
-    </div>
     <h1 className="text-2xl sm:text-3xl md:text-4xl font-bold text-gradient-orange">
       Mala direta
     </h1>
@@ -34,10 +32,48 @@ const NavbarLogo = () => (
 )
 
 const NavbarLinks = ({ className = '' }) => (
-  <ul className={`${className} text-gr-2 font-medium`} role="menu">
-    <li className="hover:text-or-1 cursor-pointer">Início</li>
-    <li className="hover:text-or-1 cursor-pointer">Funcionalidades</li>
-    <li className="hover:text-or-1 cursor-pointer">Sobre</li>
+  <ul
+    className={`${className} text-gr-2 font-medium flex items-center`}
+    role="menu"
+  >
+    <li>
+      <a
+        href="https://github.com/cesardmn/maladireta"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-or-1 cursor-pointer"
+        aria-label="GitHub"
+      >
+        <BsGithub />
+      </a>
+    </li>
+
+    <li>
+      <a
+        href="https://linkedin.com/in/cesardmn"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-or-1 cursor-pointer"
+        aria-label="LinkedIn"
+      >
+        <BsLinkedin />
+      </a>
+    </li>
+
+    <li className="hover:text-or-1 cursor-pointer">
+      <a
+        href="https://cesardmn.github.io"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hover:text-or-1 cursor-pointer"
+        aria-label="Portfolio"
+      >
+        {' '}
+        <div className="w-10 h-10 rounded-full overflow-hidden flex items-center justify-center text-bk-1 font-bold text-lg select-none">
+          <img src={logo} alt="Logo" className="w-full h-full object-cover" />
+        </div>
+      </a>
+    </li>
   </ul>
 )
 

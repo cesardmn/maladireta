@@ -1,6 +1,5 @@
 import Docxtemplater from 'docxtemplater'
 import { getBuffer, getZip } from './index'
-import { FiLinkedin } from 'react-icons/fi'
 
 export const Docx = (() => {
   const _getDocx = (zip) => {
@@ -83,7 +82,6 @@ export const Docx = (() => {
       return {
         status: 'ok',
         tags,
-        FiLinkedin,
         message: `${tags.length} tag(s) identificada(s) com sucesso.`,
       }
     } catch (error) {
@@ -109,6 +107,10 @@ export const Docx = (() => {
         type: 'blob',
         mimeType:
           'application/vnd.openxmlformats-officedocument.wordprocessingml.document',
+        compression: 'DEFLATE',
+        compressionOptions: {
+          level: 6,
+        },
       })
 
       return {

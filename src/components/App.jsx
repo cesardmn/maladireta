@@ -6,7 +6,7 @@ import DocxImport from './DocxImport'
 import XlsxImport from './XlsxImport'
 import Choice from './Choice'
 import { useState } from 'react'
-// import { useFiles } from '../providers/Files/Hook'
+import Footer from './Footer'
 
 const App = () => {
   const [step, setStep] = useState('docx')
@@ -36,6 +36,8 @@ const App = () => {
           <LogPanel />
         </ColumnContainer>
       </section>
+
+      <Footer />
     </main>
   )
 }

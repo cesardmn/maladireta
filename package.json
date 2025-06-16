@@ -1,8 +1,26 @@
 {
   "name": "maladireta",
-  "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
+  "description": "Geração de documentos personalizados em massa a partir de modelos DOCX e planilhas XLSX.",
+  "author": "Cesar Dimi",
+  "license": "MIT",
+  "private": false,
   "type": "module",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/cesardmn/maladireta.git"
+  },
+  "keywords": [
+    "mala-direta",
+    "docx",
+    "docxtemplater",
+    "docx-preview",
+    "xlsx",
+    "prettier",
+    "tailwindcss",
+    "react",
+    "vite"
+  ],
   "scripts": {
     "dev": "vite",
     "lint": "eslint .",

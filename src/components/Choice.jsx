@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useRef } from 'react'
 import { useFiles } from '../providers/Files/Hook'
 import Preview from './Preview'
 import { BsFileEarmarkZip } from 'react-icons/bs'
@@ -10,19 +10,55 @@ const Choice = () => {
   const [fileName, setFileName] = useState()
   const [selectedKey, setSelectedKey] = useState(null)
   const [isLoading, setIsLoading] = useState(false)
+  const [progress, setProgress] = useState({ current: 0, total: 0 })
+  const [statusMessage, setStatusMessage] = useState('')
+  const intervalRef = useRef(null)
 
   const handleClick = (key) => {
     setSelectedKey(key)
     setFileName(`${key}_${data[0][key]}`)
+    setProgress({ current: 0, total: 0 })
+    setStatusMessage('')
   }
 
   const handleDownload = async () => {
     setIsLoading(true)
+    setProgress({ current: 0, total: data.length })
+    setStatusMessage('Processando arquivos...')
+
+    // Função para animar os pontos após "Compactando arquivos"
+    const startCompactingAnimation = () => {
+      let dots = 0
+      setStatusMessage('Compactando arquivos')
+      intervalRef.current = setInterval(() => {
+        dots = (dots + 1) % 4 // 0,1,2,3
+        setStatusMessage('Compactando arquivos' + '.'.repeat(dots))
+      }, 2000)
+    }
 
     try {
-      const zip = await Mailling(data, files.docx.file, selectedKey)
+      const zip = await Mailling(
+        data,
+        files.docx.file,
+        selectedKey,
+        (prog) => {
+          setProgress(prog)
+        },
+        () => {
+          startCompactingAnimation()
+          setProgress({ current: data.length, total: data.length })
+        }
+      )
+
+      // ZIP gerado, limpa animação
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+        intervalRef.current = null
+      }
 
       if (zip.status === 'ok') {
+        setStatusMessage('Download pronto!')
+        // trigger download...
         const url = URL.createObjectURL(zip.zip)
         const a = document.createElement('a')
         a.href = url
@@ -33,14 +69,26 @@ const Choice = () => {
         URL.revokeObjectURL(url)
       } else {
         alert(zip.message)
+        setStatusMessage('')
       }
     } catch (error) {
       alert('Erro ao gerar os arquivos.')
       console.error(error)
+      setStatusMessage('')
     } finally {
       setIsLoading(false)
+      setProgress({ current: 0, total: 0 })
+      if (intervalRef.current) {
+        clearInterval(intervalRef.current)
+        intervalRef.current = null
+      }
     }
   }
+
+  const progressPercent =
+    progress.total > 0
+      ? Math.round((progress.current / progress.total) * 100)
+      : 0
 
   return (
     <div
@@ -83,34 +131,46 @@ const Choice = () => {
         {/* Nome do arquivo + ações */}
         {fileName && (
           <div className="flex flex-col gap-6 border-t border-gr-2 pt-6">
-            {/* Preview */}
-            <div className="flex flex-col gap-2 items-center text-center">
-              <span className="text-xs text-gr-2 italic">
-                Pré-visualização:
-              </span>
-              <Preview title={fileName} />
+            {/* Actions */}
+            <div className="flex flex-col md:flex-row w-full gap-4 justify-center items-stretch sm:items-center">
+              {/* Botão Preview */}
+              <div className="flex-1 flex justify-center">
+                <Preview title="preview" />
+              </div>
+
+              {/* Botão de download */}
+              <div className="flex-1 flex justify-center">
+                <button
+                  className="w-full sm:w-auto bg-or-3 text-wt-1 font-bold px-6 py-2 rounded hover:bg-or-2 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-or-1 truncate flex items-center justify-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                  aria-label="Baixar mala direta em arquivo zip"
+                  onClick={handleDownload}
+                  disabled={isLoading}
+                >
+                  <BsFileEarmarkZip size={18} />
+                  <span className="truncate">
+                    {isLoading ? 'Gerando arquivos...' : 'gerar arquivos'}
+                  </span>
+                </button>
+              </div>
             </div>
 
             {/* Divisória */}
             <div className="border-t border-gr-2" />
 
-            {/* Botão de gerar */}
-            <div className="flex flex-col gap-2 items-center text-center">
-              <span className="text-xs text-gr-2 italic">
-                Baixar arquivos gerados:
-              </span>
-              <button
-                className="bg-or-3 text-wt-1 font-bold px-6 py-2 rounded hover:bg-or-2 transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-or-1 max-w-full sm:max-w-[280px] truncate flex items-center gap-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                aria-label="Baixar mala direta em arquivo zip"
-                onClick={handleDownload}
-                disabled={isLoading}
-              >
-                <BsFileEarmarkZip size={18} />
-                <span className="truncate">
-                  {isLoading ? 'Gerando arquivos...' : 'mala-direta.zip'}
-                </span>
-              </button>
-            </div>
+            {/* Progress bar + legenda */}
+            {isLoading && progress.total > 0 && (
+              <>
+                <div className="w-full bg-gray-300 rounded h-3 overflow-hidden mt-2">
+                  <div
+                    className="bg-or-2 h-3 transition-all duration-300"
+                    style={{ width: `${progressPercent}%` }}
+                  />
+                </div>
+                <div className="text-center mt-2 text-gr-2 font-medium">
+                  {statusMessage} ({progress.current} de {progress.total})
+                </div>
+              </>
+            )}
           </div>
         )}
       </div>

@@ -2,16 +2,20 @@
 
 Aplicação para geração automatizada de documentos personalizados em lote, utilizando modelos `.docx` e planilhas `.xlsx`.
 
+## Visão Geral
+
+O **Mala Direta** é uma aplicação web que facilita a criação de documentos personalizados em massa, como cartas, certificados ou contratos. A ferramenta combina modelos Word com dados de planilhas Excel para gerar arquivos únicos de forma simples e rápida, com validações e pré-visualização.
+
 ## Funcionalidades
 
-- **Modelo DOCX parametrizável:** Utilize arquivos Word com tags como `{nome}`, `{sobrenome}`, `{data}` para personalização dinâmica.
-- **Importação de dados via XLSX:** Carregue planilhas com colunas correspondentes às variáveis do modelo.
-- **Validação de consistência:** O sistema verifica a correspondência entre as tags do modelo e os dados fornecidos, indicando eventuais inconsistências.
-- **Definição de identificador:** Permite selecionar a coluna que será utilizada para nomear os arquivos gerados.
-- **Pré-visualização:** Visualize o resultado antes de gerar os documentos finais.
-- **Registro de operações:** Logs detalhados de todas as etapas do processo.
+- **Modelo DOCX parametrizável:** Utilize arquivos `.docx` com tags como `{nome}`, `{sobrenome}`, `{data}`, entre outras.
+- **Importação de dados:** Aceita planilhas `.xlsx` com colunas correspondentes às variáveis utilizadas no modelo.
+- **Validação de consistência:** Verifica se todas as tags do modelo estão presentes na planilha de dados.
+- **Identificador personalizável:** Permite escolher uma coluna como nome base dos arquivos gerados.
+- **Pré-visualização integrada:** Visualize um exemplo do resultado antes de gerar todos os documentos.
+- **Registro de operações:** Exibe logs detalhados do processo de geração.
 
-## Como utilizar
+## Como Utilizar
 
 1. **Clone o repositório:**
 
@@ -33,41 +37,42 @@ Aplicação para geração automatizada de documentos personalizados em lote, ut
    ```
 
 4. **Acesse a aplicação:**
-   ```
-   http://localhost:3000
-   ```
+   [http://localhost:3000](http://localhost:3000)
 
 ## Scripts
 
-- `npm run dev` — Inicia o ambiente de desenvolvimento.
-- `npm run build` — Gera a versão de produção.
-- `npm run preview` — Visualiza a build de produção localmente.
-- `npm run lint` — Executa análise estática de código.
-- `npm run format` — Formata o código com Prettier.
-- `npm test` — Executa os testes automatizados.
+- `npm run dev` — Inicia o ambiente de desenvolvimento
+- `npm run build` — Gera a build de produção
+- `npm run preview` — Visualiza a build localmente
+- `npm run lint` — Executa análise estática do código
+- `npm run format` — Formata o código com Prettier
 
-## Estrutura do projeto
+## Estrutura do Projeto
 
-```
-src/
-  components/      # Componentes de interface
-  providers/       # Contextos e hooks globais
-  utils/           # Funções utilitárias
-  assets/          # Recursos estáticos (imagens, ícones)
-public/            # Arquivos públicos
-```
+- [`src/components/`](src/components/) — Componentes da interface
+- [`src/providers/`](src/providers/) — Contextos e hooks globais
+- [`src/utils/`](src/utils/) — Funções auxiliares de manipulação e validação
+- [`src/assets/`](src/assets/) — Imagens, ícones e recursos estáticos
+- [`public/`](public/) — Arquivos públicos (como o favicon e manifest)
 
 ## Tecnologias
 
-- **Frontend:** [React](https://reactjs.org/), [Vite](https://vitejs.dev/), [Tailwind CSS](https://tailwindcss.com/), [React Icons](https://react-icons.github.io/react-icons/)
-- **Manipulação de arquivos:** [docxtemplater](https://github.com/open-xml-templating/docxtemplater), [jszip](https://stuk.github.io/jszip/), [pizzip](https://github.com/open-xml-templating/pizzip), [xlsx (SheetJS)](https://sheetjs.com/)
-- **Qualidade de código:** [ESLint](https://eslint.org/), [Prettier](https://prettier.io/)
-- **Deploy:** [gh-pages](https://github.com/tschaub/gh-pages)
+- [React](https://reactjs.org/)
+- [Vite](https://vitejs.dev/)
+- [Tailwind CSS](https://tailwindcss.com/)
+- [React Icons](https://react-icons.github.io/react-icons/)
+- [docxtemplater](https://github.com/open-xml-templating/docxtemplater)
+- [jszip](https://stuk.github.io/jszip/)
+- [pizzip](https://github.com/open-xml-templating/pizzip)
+- [SheetJS/xlsx](https://sheetjs.com/)
+- [ESLint](https://eslint.org/)
+- [Prettier](https://prettier.io/)
+- [gh-pages](https://github.com/tschaub/gh-pages)
 
 ## Licença
 
-Distribuído sob a licença MIT. Consulte o arquivo [LICENSE](LICENSE) para mais informações.
+MIT © 2025 Cesar Dimi
 
 ---
 
-Desenvolvido por [Cesar Dimi](https://github.com/cesardimi)
+uma ferramenta [autoflux](https://autoflux.app.br/)

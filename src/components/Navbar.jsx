@@ -53,10 +53,10 @@ const NavLinks = ({ className = '' }) => (
   <ul className={`text-gr-2 font-medium ${className}`} role="menu">
     <li>
       <a
-        href="https://www.autoflux.app.br"
+        href="https://www.autoflux.app.br/comparadoc"
         className="hover:text-or-1 transition-colors duration-150"
       >
-        autoflux
+        compara doc
       </a>
     </li>
     <li>
